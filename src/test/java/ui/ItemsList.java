@@ -51,7 +51,7 @@ public class ItemsList extends BaseTests {
         itemsPage.createItem(itemToBeDeleted);
         String message = "Item was not removed ".concat(itemToBeDeleted.getName());
         itemsPage.deleteItem(itemToBeDeleted.getName());
-        assertFalse(message, itemsPage.itemIsDisplayed("Stranger Things is so cool"));
+        assertFalse(message, itemsPage.itemIsDisplayed(itemToBeDeleted.getName()));
     }
 
     @Test
