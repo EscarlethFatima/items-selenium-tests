@@ -1,7 +1,7 @@
 
 ITEMS-TESTS
 -----------
-items-tests is an test framework to automate test cases of Stranger Things items web page. Please follow  the next instructions to execute the tests.
+items-tests is a test framework to automate test cases of Stranger Things items web page. Please follow  the next instructions to execute the tests.
 
 REQUIREMENTS
 -----------------------------------
@@ -59,3 +59,15 @@ To execute the tests by command line you can use the following command:
 
 To see the test execution, navigate to the Dashboard in BrowserStack and see the execution in the selected device.
 
+RUNNING SPECIFIC TEST SUITE
+-----------------------------------
+
+If you want to execute a specific test suite, please add the next parameter when running tests:
+
+###Items List suite
+
+    gradle test --tests "ui.ItemsList"
+
+###Items List bugs
+
+    gradle test --tests "ui.ItemsIssues"
