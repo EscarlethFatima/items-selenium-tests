@@ -6,8 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import pages.StrangerList;
-import utils.StringHelper;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
@@ -20,8 +21,8 @@ public class ItemsIssues extends BaseTests{
     public void setUp()  {
         itemsPage = new StrangerList(driver, webActions);
         itemBug1 = new Item("ITEM BUG1: Stranger Things","strangerThings.png");
-        itemBug2 = new Item(StringHelper.generateRandomString(250),"strangerThings.png");
-        itemBug3 = new Item(StringHelper.generateRandomString(250),"strangerThings.png");
+        itemBug2 = new Item("ITEM BUG2: Stranger Things","strangerThings.png");
+        itemBug3 = new Item("ITEM BUG3: Stranger Things","strangerThings.png");
     }
 
     @Test
@@ -36,14 +37,16 @@ public class ItemsIssues extends BaseTests{
     }
 
     @Test
-    public  void editButtonIsDisplayedAfterCreatingItemDescriptionWithLongText() {
-        itemsPage.createItem(itemBug2);
-        assertTrue("Edit button is not displayed", itemsPage.editItemButtonIsDisplayed(itemBug2.getName()));
+    public  void createItemButtonShouldNotBeEnabledWhenNotAllTheRequiredFieldsHaveBeenSet() {
+        itemsPage.setItemDescription(itemBug2.getName());
+        assertFalse("Create Item is enabled", itemsPage.createItemIsEnabled());
     }
 
     @Test
-    public  void deleteButtonIsDisplayedAfterCreatingItemDescriptionWithLongText() {
+    public  void deleteWarningModalIsProperlySpelled() {
         itemsPage.createItem(itemBug3);
-        assertTrue("Delete button is not displayed", itemsPage.deleteItemButtonIsDisplayed(itemBug3.getName()));
+        itemsPage.clickDelete(itemBug3.getName());
+        assertEquals("Delete Warning Modal is not properly spelled",
+                "Are you sure you want to delete this item?", itemsPage.getDeleteModalHeaderText());
     }
 }

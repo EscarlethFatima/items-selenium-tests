@@ -25,7 +25,11 @@ public class StrangerList extends Base {
     @FindBy(css = ".btn.btn-primary")
     private WebElement confirmDeletingButton;
 
+    @FindBy(css = "div.modal-body.ng-scope > p")
+    private WebElement deleteModalHeader;
+
     private static final String ITEM = "//p[normalize-space(text())=\"%s\"]";
+    private static final String ITEM_IMAGE = "//p[normalize-space(text())=\"%s\"]/../../../figure/img";
     private static final String EDIT_ITEM = "//p[text()='%s']/../../div/button[text()='Edit']";
     private static final String DELETE_ITEM = "//p[text()='%s']/../../div/button[text()='Delete']";
 
@@ -34,12 +38,9 @@ public class StrangerList extends Base {
         super(driver,webActions);
     }
 
-    public  void clickDeleteItem(String item){
-        webActions.clickElement(driver.findElement(By.xpath(String.format(DELETE_ITEM, item))));
-    }
+    public  void clickDelete(String itemDescription){
 
-    public  void clickConfirmDeleteItem(){
-        webActions.clickElement(confirmDeletingButton);
+        webActions.clickElement(By.xpath(String.format(DELETE_ITEM, itemDescription)));
     }
 
     public  void clickConfirmUpdateItem(){
@@ -70,7 +71,6 @@ public class StrangerList extends Base {
     }
 
     public  boolean itemIsDisplayed(String item){
-        System.out.println(String.format(ITEM, item));
         return webActions.isWebElementDisplayed(By.xpath(String.format(ITEM, item)),3000);
     }
 
@@ -78,5 +78,12 @@ public class StrangerList extends Base {
         return webActions.isWebElementEnabled(createItemButton);
     }
 
+    public  String getImageSrc(String itemDescription){
+        System.out.println(webActions.getAttributeValueFromElement(By.xpath(String.format(ITEM_IMAGE, itemDescription)),"src"));
+        return webActions.getAttributeValueFromElement(By.xpath(String.format(ITEM_IMAGE, itemDescription)),"src" );
+    }
 
+    public  String getDeleteModalHeaderText(){
+        return webActions.getElementText(deleteModalHeader);
+    }
 }

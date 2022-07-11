@@ -60,4 +60,9 @@ public final class CommonWebActions {
             return attributeValue;
         }
     }
+
+    public String getElementText(WebElement webElement) {
+        waiter.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+    }
 }
