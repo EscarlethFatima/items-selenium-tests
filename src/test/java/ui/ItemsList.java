@@ -21,13 +21,13 @@ public class ItemsList extends BaseTests {
     @Before
     public void setUp()  {
         itemsPage = new StrangerList(driver, webActions);
-        item = new Item("YUU 1: Stranger Things is so cool","strangerThings.png");
-        itemToBeUpdated = new Item("IITEM 2: Once is amazing","strangerThings.png");
-        itemToBeDeleted = new Item("IITEM 3: Mike is tall enough","strangerThings.png");
+        item = new Item("ITEM 1: Stranger Things is so cool","strangerThings.png");
+        itemToBeUpdated = new Item("ITEM 2: Once is amazing","strangerThings.png");
+        itemToBeDeleted = new Item("ITEM 3: Mike is tall enough","strangerThings.png");
     }
 
     @Test
-    public  void createItem() throws InterruptedException {
+    public  void createItem(){
         itemsPage.createItem(item);
         String message = "Item was not created".concat(item.getName());
         assertTrue(message,itemsPage.itemIsDisplayed(item.getName()));

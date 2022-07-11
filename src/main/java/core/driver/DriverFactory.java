@@ -14,7 +14,7 @@ public final class DriverFactory {
     public static WebDriver getDriverManager(String driverType) {
         Map<String, Browser> map = new HashMap<>();
         map.put(CHROME, new ChromeBrowser());
-        map.put(BROWSER_STACK, new BrowserStack());
+        map.put(BROWSER_STACK, new MobileBrowserStack());
         return map.get(driverType).getBrowser();
     }
 }

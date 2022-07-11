@@ -49,4 +49,15 @@ public final class CommonWebActions {
         element.clear();
         element.sendKeys(text);
     }
+
+    public String getAttributeValueFromElement(By by, String attribute) {
+        waiter.until(ExpectedConditions.visibilityOfElementLocated(by));
+        String attributeValue = "";
+        try {
+            attributeValue = driver.findElement(by).getAttribute(attribute);
+            return attributeValue;
+        } catch (Exception e) {
+            return attributeValue;
+        }
+    }
 }

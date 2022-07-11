@@ -12,7 +12,7 @@ import static core.constants.Constants.*;
 import static core.constants.Constants.REMOTE_ACCESS_KEY;
 
 
-public class BrowserStack implements Browser {
+public class MobileBrowserStack implements Browser {
 
     private static final String USERNAME = PropertiesManager.getInstance().getProperties(REMOTE_USER_NAME);
     private static final String ACCESS_KEY = PropertiesManager.getInstance().getProperties(REMOTE_ACCESS_KEY);
